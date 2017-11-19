@@ -25,19 +25,26 @@ class App extends Component {
 
   runeSet = (r) => {
 
-
     console.log(r)
 
     var fontSze = 16;
     var xPos = 0;
     var yPos = 0;
+
+    // -------------------------------------------
+    // --------------Start Background-------------
   
     
     var backgroundColor = r.rect(0, 0, r.width, r.height)
     .fill(240)
     .stroke(false)
 
-    var group = r.group(50, 50)
+    // ---------------End Background--------------
+    // -------------------------------------------
+    // -----------------Start Text----------------
+
+    var group = r.group(50, 50) //group position setup
+
 
     var texttest = r.text("testinput", xPos, yPos, group)
       .fontSize(fontSze).stroke(false)
@@ -51,27 +58,27 @@ class App extends Component {
       .fontSize(fontSze).stroke(false)
       .letterSpacing(false)
 
+    // -----------------End Text-----------------
+    // ------------------------------------------
+    // ----------Start Get-text-length-----------
+
 
     var txt = document.getElementsByTagName("text");
     
-    const tlength =  this.state;
-    
-    if(txt){
-      this.setState(() => {
-        var txtlenAll = [];
-        var txtlen1 = txt[0].textLength.baseVal.value
-        var txtlen2 = txt[1].textLength.baseVal.value
-        var txtlen3 = txt[2].textLength.baseVal.value
-        txtlenAll = [txtlen1, txtlen2, txtlen3]
-        this.state.tlength = txtlenAll
-        return this.state.tlength
-        console.log(this.state.tlength);
-      })
-      console.log(this.state.tlength);
-    }
-    
+    this.setState( ()  => {
+      var txtlen1 = txt[0].textLength.baseVal.value
+      var txtlen2 = txt[1].textLength.baseVal.value
+      var txtlen3 = txt[2].textLength.baseVal.value
+      this.state.tlength = [txtlen1, txtlen2, txtlen3]   
+      console.log(this.state.tlength)
+      }
+    )
+
     console.log(this.state.tlength)
 
+    // -------------End Get-text-length-----------
+    // -------------------------------------------
+    // -----------------Start แถบดำ---------------
 
     var txtWdth = 40;
     var txtWdth2 = 40;
@@ -100,6 +107,9 @@ class App extends Component {
       .closePath()
       .stroke(false)
 
+    // -----------------End แถบดำ-----------------
+    // -------------------------------------------
+    // -----------------Start Grid----------------
 
     var gridX = 50;
     var gridY = 50;
@@ -114,26 +124,18 @@ class App extends Component {
       rows: 10
     });
 
+    // -----------------End Grid----------------
+
   }
     
-
   runeDraw = (r) => {
     r.draw();
   }
 
-  componentWillMount(){
-   console.log("compponent will mount test log") 
-  }
   componentDidMount(){
-    
     var r = this.runeInit();
     this.runeSet(r);
     this.runeDraw(r);
-    
-
-    // stored return values(text lenght) from function
-    // var txtLength = this.getTextLen();
-    // this.runeDraw(txtLength);
   }
 
   
