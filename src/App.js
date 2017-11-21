@@ -17,14 +17,13 @@ class App extends Component {
       container: "#canvas",
       width: 500,
       height: 500,
-      debug: false
+      debug: false // toggle opening grid
     });
     return r
   }
 
-  runeSet = (r) => {
-
-  
+  runeSet = (r, txtwdth) => {
+    
     var backgroundColor = r.rect(0, 0, r.width, r.height)
     .fill(240)
     .stroke(false)
@@ -39,6 +38,8 @@ class App extends Component {
     var gridY = 50;
     var gridCol = 10;
     var gridRow = 10;
+    var rectHeight = 6;
+    
 
     var grid = r.grid({
       x: gridX,
@@ -51,16 +52,13 @@ class App extends Component {
     });
 
     for (var i = 0; i < json.length; i++) {
-      var inputline1 = json[i].input1;
-      var inputline2 = json[i].input2;
-      var inputline3 = json[i].input3;
 
-      var code1 = r.rect(xPos, yPos, inputline1.length, 5)
-        .fill(100).stroke(false)
-      var code2 = r.rect(xPos, yPos + 10, inputline2.length, 5)
-        .fill(100).stroke(false)
-      var code3 = r.rect(xPos, yPos + 20, inputline3.length, 5)
-        .fill(100).stroke(false)
+      var code1 = r.rect(xPos, yPos, txtwdth[0][i], rectHeight)
+        .fill(0).stroke(240).strokeWidth(2)
+      var code2 = r.rect(xPos, yPos + 10, txtwdth[1][i], rectHeight)
+        .fill(0).stroke(240).strokeWidth(2)
+      var code3 = r.rect(xPos, yPos + 20, txtwdth[2][i], rectHeight)
+        .fill(0).stroke(240).strokeWidth(2)
 
       if (i < grid.state.columns) {
         grid.add(code1, (i + 1) % 11, 0)
@@ -93,8 +91,12 @@ class App extends Component {
       }
     }
     
-    var texttest = r.text("The Black Codes", 330, 450)
-      .fontSize(fontSze).stroke(false)
+    var texttest = r.text("The Black Codes", 330, 430)
+      .fontSize(fontSze).stroke(false).fill(0)
+      .letterSpacing(false)
+
+    var texttest = r.text("Boring Original Nonsense", 270, 450)
+      .fontSize(fontSze).stroke(false).fill(0)
       .letterSpacing(false)
 
   }
@@ -103,18 +105,39 @@ class App extends Component {
     r.draw();
   }
 
+  getTextWidth = (text, font) => {
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
+    context.font = font;
+    var metrics = context.measureText(text);
+    return metrics.width;
+  };
+
   componentDidMount(){
     var r = this.runeInit();
-    this.runeSet(r);
-    this.runeDraw(r);
+    
+    // calc real text width(typography anatomy based)
+    var txtwdthLine1 = []
+    var txtwdthLine2 = []
+    var txtwdthLine3 = []
+    var txtwdth = []
+    var calcFontSize = "bold 10pt Helvetica"
 
-    // this.GetLocationData();
+    for (var i = 0;i < json.length; i++ ) {
+      txtwdthLine1.push(this.getTextWidth(json[i].input1, calcFontSize)); //measures text width
+      txtwdthLine2.push(this.getTextWidth(json[i].input2, calcFontSize)); //measures text width
+      txtwdthLine3.push(this.getTextWidth(json[i].input3, calcFontSize)); //measures text width
+      txtwdth = [txtwdthLine1, txtwdthLine2, txtwdthLine3]
+    }
+
+    this.runeSet(r, txtwdth);
+    this.runeDraw(r);
   }
 
 
 
+
   render() {
-    const {tlength} = this.state;
     return (
       <div id="canvas">
       </div>
