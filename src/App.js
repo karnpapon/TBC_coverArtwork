@@ -23,10 +23,6 @@ class App extends Component {
   }
 
   runeSet = (r, txtwdth) => {
-    
-    var backgroundColor = r.rect(0, 0, r.width, r.height)
-    .fill(240)
-    .stroke(false)
 
     var group = r.group(50, 50) //group position setup
 
@@ -39,7 +35,15 @@ class App extends Component {
     var gridCol = 10;
     var gridRow = 10;
     var rectHeight = 6;
-    
+    var offsetGrid = 0.05;
+    var color = new Rune.Color
+    var color2 = new Rune.Color
+    color.rgb(0,0,0,1)
+    color2.rgb(240,240,240,1)
+
+    var backgroundColor = r.rect(0, 0, r.width, r.height)
+      .fill(color2)
+      .stroke(false)
 
     var grid = r.grid({
       x: gridX,
@@ -54,11 +58,11 @@ class App extends Component {
     for (var i = 0; i < json.length; i++) {
 
       var code1 = r.rect(xPos, yPos, txtwdth[0][i], rectHeight)
-        .fill(0).stroke(240).strokeWidth(2)
+        .fill(color).stroke(color2).strokeWidth(3)
       var code2 = r.rect(xPos, yPos + 10, txtwdth[1][i], rectHeight)
-        .fill(0).stroke(240).strokeWidth(2)
+        .fill(color).stroke(color2).strokeWidth(3)
       var code3 = r.rect(xPos, yPos + 20, txtwdth[2][i], rectHeight)
-        .fill(0).stroke(240).strokeWidth(2)
+        .fill(color).stroke(color2).strokeWidth(3)
 
       if (i < grid.state.columns) {
         grid.add(code1, (i + 1) % 11, 0)
