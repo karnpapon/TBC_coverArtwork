@@ -1,9 +1,0 @@
-#myCanvas
-{
-    position: absolute;
-    visibility: visible;
-    height: auto;
-    width: auto;
-    font-size: 18px;
-    white-space: nowrap; /* Thanks to Herb Caudill comment */
-}

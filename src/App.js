@@ -34,7 +34,7 @@ class App extends Component {
     var gridY = 50;
     var gridCol = 10;
     var gridRow = 10;
-    var rectHeight = 6;
+    var rectHeight = 5.5;
     var offsetGrid = 0.05;
     var color = new Rune.Color
     var color2 = new Rune.Color
@@ -50,7 +50,7 @@ class App extends Component {
       y: gridY,
       width: r.width - gridX * 2,
       height: r.height - gridY * 2,
-      gutter: 8,
+      gutter: 10,
       columns: gridCol,
       rows: gridRow
     });
@@ -65,9 +65,9 @@ class App extends Component {
         .fill(color).stroke(color2).strokeWidth(3)
 
       if (i < grid.state.columns) {
-        grid.add(code1, (i + 1) % 11, 0)
-        grid.add(code2, (i + 1) % 11, 0)
-        grid.add(code3, (i + 1) % 11, 0)
+        grid.add(code1, (i + 1) % 11, 1)
+        grid.add(code2, (i + 1) % 11, 1)
+        grid.add(code3, (i + 1) % 11, 1)
       } else if (i < (grid.state.columns + 10)) {
         grid.add(code1, (i + 2) % 11, 2)
         grid.add(code2, (i + 2) % 11, 2)
