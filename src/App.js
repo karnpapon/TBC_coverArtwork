@@ -34,6 +34,8 @@ class App extends Component {
     var gridY = 50;
     var gridCol = 10;
     var gridRow = 10;
+    var offsetCol = 0;
+    var offsetY = 0;
     var rectHeight = 5.5;
     var offsetGrid = 0.05;
     var color = new Rune.Color
@@ -64,35 +66,16 @@ class App extends Component {
       var code3 = r.rect(xPos, yPos + 20, txtwdth[2][i], rectHeight)
         .fill(color).stroke(color2).strokeWidth(3)
 
-      if (i < grid.state.columns) {
-        grid.add(code1, (i + 1) % 11, 1)
-        grid.add(code2, (i + 1) % 11, 1)
-        grid.add(code3, (i + 1) % 11, 1)
-      } else if (i < (grid.state.columns + 10)) {
-        grid.add(code1, (i + 2) % 11, 2)
-        grid.add(code2, (i + 2) % 11, 2)
-        grid.add(code3, (i + 2) % 11, 2)
-      } else if (i < (grid.state.columns + 20)) {
-        grid.add(code1, (i + 3) % 11, 3)
-        grid.add(code2, (i + 3) % 11, 3)
-        grid.add(code3, (i + 3) % 11, 3)
-      } else if (i < (grid.state.columns + 30)) {
-        grid.add(code1, (i + 4) % 11, 4)
-        grid.add(code2, (i + 4) % 11, 4)
-        grid.add(code3, (i + 4) % 11, 4)
-      } else if (i < (grid.state.columns + 40)) {
-        grid.add(code1, (i + 5) % 11, 5)
-        grid.add(code2, (i + 5) % 11, 5)
-        grid.add(code3, (i + 5) % 11, 5)
-      } else if (i < (grid.state.columns + 50)) {
-        grid.add(code1, (i + 6) % 11, 6)
-        grid.add(code2, (i + 6) % 11, 6)
-        grid.add(code3, (i + 6) % 11, 6)
-      } else if (i < (grid.state.columns + 60)) {
-        grid.add(code1, (i + 7) % 11, 7)
-        grid.add(code2, (i + 7) % 11, 7)
-        grid.add(code3, (i + 7) % 11, 7)
-      }
+      if(i % 10 === 0){
+        offsetCol += 10 // "if" condition increments by 10 every 10 iterations.
+        offsetY += 1 // grid.add Y axis increments by 1 every 10 iterations.
+      } 
+
+      if (i < offsetCol) {
+        grid.add(code1, (i + offsetY) % 11, offsetY)
+        grid.add(code2, (i + offsetY) % 11, offsetY)
+        grid.add(code3, (i + offsetY) % 11, offsetY)
+      } 
     }
     
     var texttest = r.text("The Black Codes", 330, 430)
