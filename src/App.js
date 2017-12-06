@@ -66,15 +66,15 @@ class App extends Component {
       var code3 = r.rect(xPos, yPos + 20, txtwdth[2][i], rectHeight)
         .fill(color).stroke(color2).strokeWidth(3)
 
-      if(i % 10 === 0){
-        offsetCol += 10 // "if" condition increments by 10 every 10 iterations.
-        offsetY += 1 // grid.add Y axis increments by 1 every 10 iterations.
+      if (i % gridCol === 0){
+        offsetCol += gridCol // "if" condition increments by "gridCol" every "gridCol" iterations.
+        offsetY += 1 // grid.add Y axis increments by 1 every "gridCol" iterations.
       } 
 
       if (i < offsetCol) {
-        grid.add(code1, (i + offsetY) % 11, offsetY)
-        grid.add(code2, (i + offsetY) % 11, offsetY)
-        grid.add(code3, (i + offsetY) % 11, offsetY)
+        grid.add(code1, (i + offsetY) % (gridCol+1), offsetY)
+        grid.add(code2, (i + offsetY) % (gridCol+1), offsetY)
+        grid.add(code3, (i + offsetY) % (gridCol+1), offsetY)
       } 
     }
     
@@ -108,7 +108,7 @@ class App extends Component {
     var txtwdthLine2 = []
     var txtwdthLine3 = []
     var txtwdth = []
-    var calcFontSize = "bold 10pt Helvetica"
+    var calcFontSize = "bold 10pt Cordia"
 
     for (var i = 0;i < json.length; i++ ) {
       txtwdthLine1.push(this.getTextWidth(json[i].input1, calcFontSize)); //measures text width
