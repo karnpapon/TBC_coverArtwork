@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 var Rune = require('rune.js');
-var json = require('../src/loginData2.json')
+var json = require('../src/logindata.json')
 
 class App extends Component {
 
