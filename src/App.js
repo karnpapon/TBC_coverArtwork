@@ -78,13 +78,13 @@ class App extends Component {
       } 
     }
     
-    var texttest = r.text("The Black Codes", 330, 430)
-      .fontSize(fontSze).stroke(false).fill(0)
-      .letterSpacing(false)
+    // var texttest = r.text("The Black Codes", 330, 430)
+    //   .fontSize(fontSze).stroke(false).fill(0)
+    //   .letterSpacing(false)
 
-    var texttest = r.text("Boring Original Nonsense", 270, 450)
-      .fontSize(fontSze).stroke(false).fill(0)
-      .letterSpacing(false)
+    // var texttest = r.text("Boring Original Nonsense", 270, 450)
+    //   .fontSize(fontSze).stroke(false).fill(0)
+    //   .letterSpacing(false)
 
   }
     
