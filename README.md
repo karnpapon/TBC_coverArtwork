@@ -2,9 +2,12 @@
 
 The Black Codes cover artwork source codes.
 
-npm install
+### Install
 
-npm start
+`npm install`.
 
-localhost:3000
+### Start
+
+- `npm start`.
+- http://localhost:3000
 
